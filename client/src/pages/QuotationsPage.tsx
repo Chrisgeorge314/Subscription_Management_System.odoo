@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Plus, Search, FileText, ArrowRight, Printer, CheckCircle2, Trash2 } from 'lucide-react';
+import { Plus, Search, FileText, ArrowRight, Printer, CheckCircle2, Trash2, Download } from 'lucide-react';
 import { api } from '../services/api.js';
 import { Quotation, Customer, Product, SubscriptionPlan } from '../types/index.js';
 import { Badge } from '../components/common/Badge.js';
 import { Modal } from '../components/common/Modal.js';
 import { useAuth } from '../context/AuthContext.js';
+import { downloadElementAsPdf } from '../utils/pdfExport.js';
 
 export const QuotationsPage: React.FC<{ onNavigateToSub?: () => void }> = ({ onNavigateToSub }) => {
   const { user } = useAuth();
@@ -17,6 +18,16 @@ export const QuotationsPage: React.FC<{ onNavigateToSub?: () => void }> = ({ onN
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [isConverting, setIsConverting] = useState(false);
+  const [isPdfDownloading, setIsPdfDownloading] = useState(false);
+
+  const handleDownloadPdf = async (number: string) => {
+    setIsPdfDownloading(true);
+    try {
+      await downloadElementAsPdf('printable-quote', `Quotation_${number}`);
+    } finally {
+      setIsPdfDownloading(false);
+    }
+  };
 
   // Form
   const [customerId, setCustomerId] = useState('');
@@ -529,12 +540,24 @@ export const QuotationsPage: React.FC<{ onNavigateToSub?: () => void }> = ({ onN
 
             {/* Actions */}
             <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-              <button
-                onClick={() => window.print()}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition"
-              >
-                <Printer className="w-3.5 h-3.5" /> Print / PDF
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  disabled={isPdfDownloading}
+                  onClick={() => handleDownloadPdf(selectedQuotation.quotationNumber)}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-medium transition shadow-xs"
+                >
+                  <Download className="w-3.5 h-3.5 text-teal-400" />
+                  <span>{isPdfDownloading ? 'Generating PDF...' : 'Download PDF'}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => window.print()}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition"
+                >
+                  <Printer className="w-3.5 h-3.5" /> Print
+                </button>
+              </div>
 
               {selectedQuotation.status !== 'CONVERTED' && user?.role !== 'CUSTOMER' && (
                 <button
