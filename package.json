@@ -1,0 +1,10 @@
+{
+  "name": "brightloop",
+  "version": "1.0.0",
+  "description": "Brightloop - Unified Subscription Management System for Odoo Kochi Hackathon",
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev"
+  }
+}
