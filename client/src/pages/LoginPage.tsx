@@ -13,6 +13,7 @@ import {
   Zap,
   BarChart3,
   ArrowRight,
+  CheckCheck,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.js';
 import { api } from '../services/api.js';
@@ -91,157 +92,175 @@ export const LoginPage: React.FC = () => {
     }
   };
 
+  /* ─── Input class helper ─────────────────────────────────────────────────── */
+  const inputCls =
+    'w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-900 ' +
+    'placeholder-slate-400 text-sm focus:outline-none focus:border-teal-500 ' +
+    'focus:ring-2 focus:ring-teal-500/20 transition-all duration-150';
+
+  const iconInputCls =
+    'w-full pl-10 pr-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-900 ' +
+    'placeholder-slate-400 text-sm focus:outline-none focus:border-teal-500 ' +
+    'focus:ring-2 focus:ring-teal-500/20 transition-all duration-150';
+
+  const labelCls = 'block text-xs font-semibold text-slate-600 mb-1.5 tracking-wide';
+
   return (
-    <div className="relative min-h-screen w-full flex flex-col lg:flex-row overflow-hidden bg-[#0B1120] font-sans select-none">
-      {/* Background Digital Network Graphic & Ambient Lighting */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        {/* Abstract Dark Navy / Blue Gradient Canvas */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0B1120] via-[#0F172A] to-[#070D19]" />
+    <div className="min-h-screen w-full flex flex-col lg:flex-row font-sans select-none bg-[#F8F9FA]">
 
-        {/* Ambient Teal & Blue Glow Orbs */}
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[140px]" />
-        <div className="absolute -bottom-32 right-1/4 w-96 h-96 bg-teal-500/15 rounded-full blur-3xl" />
+      {/* ══════════════════════════════════════════════════════════════════
+          LEFT SECTION — Brand panel (deep navy, similar to sidebar)
+      ══════════════════════════════════════════════════════════════════ */}
+      <div className="relative w-full lg:w-[46%] xl:w-[42%] flex flex-col justify-between bg-[#18243A] overflow-hidden">
 
-        {/* High-tech geometric network lines SVG */}
+        {/* Subtle geometric pattern overlay */}
         <svg
-          className="absolute inset-0 w-full h-full opacity-[0.07] stroke-slate-400"
+          className="absolute inset-0 w-full h-full opacity-[0.04] stroke-white"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <pattern id="grid-pattern" width="48" height="48" patternUnits="userSpaceOnUse">
-              <path d="M 48 0 L 0 0 0 48" fill="none" strokeWidth="1" />
+            <pattern id="dot-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r="1" fill="white" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+          <rect width="100%" height="100%" fill="url(#dot-grid)" />
         </svg>
-      </div>
 
-      {/* LEFT SECTION – BRANDING (50% on Desktop) */}
-      <div className="relative z-10 w-full lg:w-1/2 flex flex-col justify-between p-8 sm:p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-slate-800/60">
-        {/* Brand Header */}
-        <div className="flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-teal-500 via-teal-400 to-sky-400 flex items-center justify-center text-slate-950 shadow-lg shadow-teal-500/25">
-            <svg className="w-6 h-6 stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 2a10 10 0 0 0-7.07 17.07l1.41-1.41A8 8 0 1 1 12 20v2a10 10 0 0 0 0-20z" />
-            </svg>
-          </div>
-          <div>
-            <span className="text-xl font-bold tracking-tight text-white">Brightloop</span>
-            <span className="block text-[11px] font-medium text-[#14B8A6] uppercase tracking-wider">
-              Subscription Management
-            </span>
+        {/* Subtle teal accent blob — top left */}
+        <div className="absolute -top-24 -left-24 w-72 h-72 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Subtle accent blob — bottom right */}
+        <div className="absolute -bottom-20 -right-10 w-64 h-64 bg-sky-500/8 rounded-full blur-3xl pointer-events-none" />
+
+        {/* ── TOP: Logo ── */}
+        <div className="relative z-10 p-8 sm:p-10 lg:p-12">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-teal-500 flex items-center justify-center shadow-lg shadow-teal-500/30">
+              <svg className="w-5 h-5 stroke-[2.5] text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 2a10 10 0 0 0-7.07 17.07l1.41-1.41A8 8 0 1 1 12 20v2a10 10 0 0 0 0-20z" />
+              </svg>
+            </div>
+            <div>
+              <span className="text-lg font-bold tracking-tight text-white leading-none">Brightloop</span>
+              <span className="block text-[10px] font-semibold text-teal-400 uppercase tracking-widest mt-0.5">
+                Subscription Management
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* Central Hero Statement */}
-        <div className="my-12 lg:my-0 max-w-lg">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-[#14B8A6] text-xs font-semibold mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#14B8A6] animate-pulse" />
+        {/* ── MIDDLE: Hero content ── */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center px-8 sm:px-10 lg:px-12 pb-4">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/15 border border-teal-500/25 text-teal-400 text-[11px] font-semibold mb-7 w-fit">
+            <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
             ODOO Kochi Hackathon Edition
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
-            Manage Subscriptions. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-sky-300 to-teal-200">
-              Effortlessly.
-            </span>
+          <h1 className="text-3xl sm:text-4xl xl:text-[2.6rem] font-extrabold text-white tracking-tight leading-[1.15] max-w-sm">
+            Manage Subscriptions.{' '}
+            <span className="text-teal-400">Effortlessly.</span>
           </h1>
 
-          <p className="text-sm sm:text-base text-[#A5B4CC] mt-5 leading-relaxed font-normal">
-            Your complete platform for managing subscriptions, recurring billing, invoices and payments.
+          <p className="text-sm text-slate-400 mt-4 leading-relaxed max-w-sm">
+            Your complete platform for managing subscriptions, recurring billing, invoices and payments — all in one place.
           </p>
 
-          {/* Three Feature Highlights */}
-          <div className="mt-10 space-y-4">
-            <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-[#172338]/40 border border-slate-700/50 backdrop-blur-sm">
-              <div className="w-9 h-9 rounded-lg bg-teal-500/15 border border-teal-500/30 text-[#14B8A6] flex items-center justify-center shrink-0">
-                <Repeat className="w-4 h-4" />
+          {/* Feature cards */}
+          <div className="mt-8 space-y-3 max-w-sm">
+            {[
+              {
+                icon: <Repeat className="w-4 h-4" />,
+                color: 'text-teal-400 bg-teal-500/10 border-teal-500/20',
+                title: 'Subscription Management',
+                desc: 'Complete lifecycle from quotation to active renewals and closures.',
+              },
+              {
+                icon: <Zap className="w-4 h-4" />,
+                color: 'text-sky-400 bg-sky-500/10 border-sky-500/20',
+                title: 'Automated Billing',
+                desc: 'Recurring invoices, Indian GST calculations, and reconciliation.',
+              },
+              {
+                icon: <BarChart3 className="w-4 h-4" />,
+                color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
+                title: 'Revenue Analytics',
+                desc: 'Real-time MRR, ARR, overdue tracking, and CSV export reports.',
+              },
+            ].map((f) => (
+              <div
+                key={f.title}
+                className="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.04] border border-white/8 hover:bg-white/[0.06] transition-colors"
+              >
+                <div className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 ${f.color}`}>
+                  {f.icon}
+                </div>
+                <div>
+                  <h3 className="text-[13px] font-semibold text-white leading-tight">{f.title}</h3>
+                  <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">{f.desc}</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-sm font-semibold text-white">Subscription Management</h3>
-                <p className="text-xs text-[#A5B4CC] mt-0.5">
-                  Complete lifecycle control from quotation proposal to active renewals and closures.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-[#172338]/40 border border-slate-700/50 backdrop-blur-sm">
-              <div className="w-9 h-9 rounded-lg bg-sky-500/15 border border-sky-500/30 text-sky-400 flex items-center justify-center shrink-0">
-                <Zap className="w-4 h-4" />
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-white">Automated Billing</h3>
-                <p className="text-xs text-[#A5B4CC] mt-0.5">
-                  Idempotent recurring tax invoices, Indian GST calculations, and payment reconciliation.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-[#172338]/40 border border-slate-700/50 backdrop-blur-sm">
-              <div className="w-9 h-9 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0">
-                <BarChart3 className="w-4 h-4" />
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-white">Revenue Analytics</h3>
-                <p className="text-xs text-[#A5B4CC] mt-0.5">
-                  Real-time MRR, ARR, overdue tracking, and automated financial CSV reports.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Footer info */}
-        <div className="text-xs text-slate-500 flex items-center justify-between">
-          <span>Brightloop Software Platform</span>
-          <span>Security • RBAC • GST Engine</span>
+        {/* ── BOTTOM: Footer ── */}
+        <div className="relative z-10 px-8 sm:px-10 lg:px-12 py-6 flex items-center justify-between border-t border-white/8">
+          <span className="text-[11px] text-slate-500">© 2026 Brightloop Software</span>
+          <div className="flex items-center gap-1.5 text-[11px] text-slate-500">
+            <CheckCheck className="w-3.5 h-3.5 text-teal-500" />
+            <span>RBAC · GST · JWT Auth</span>
+          </div>
         </div>
       </div>
 
-      {/* RIGHT SECTION – LOGIN FORM WITH GLASSMORPHISM (50% on Desktop) */}
-      <div className="relative z-10 w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 lg:p-16">
-        {/* Glass Card Container */}
-        <div className="w-full max-w-md relative">
-          {/* Subtle teal glow behind card */}
-          <div className="absolute -inset-1.5 bg-gradient-to-r from-teal-500/20 to-sky-500/20 rounded-3xl blur-xl opacity-75" />
+      {/* ══════════════════════════════════════════════════════════════════
+          RIGHT SECTION — Login form (light, matches app theme)
+      ══════════════════════════════════════════════════════════════════ */}
+      <div className="flex-1 flex items-center justify-center p-6 sm:p-10 bg-[#F8F9FA]">
+        <div className="w-full max-w-md">
 
-          <div className="relative rounded-2xl bg-[#172338]/70 border border-slate-700/80 backdrop-blur-xl p-8 sm:p-10 shadow-2xl">
-            {/* Header of Form */}
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-white tracking-tight">
-                {isForgotPassword ? 'Reset Password' : isRegistering ? 'Create Customer Account' : 'Welcome Back'}
+          {/* Card */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 sm:p-10">
+
+            {/* Form Header */}
+            <div className="mb-7">
+              <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
+                {isForgotPassword
+                  ? 'Reset your password'
+                  : isRegistering
+                  ? 'Create an account'
+                  : 'Welcome back'}
               </h2>
-              <p className="text-xs sm:text-sm text-[#A5B4CC] mt-1">
+              <p className="text-sm text-slate-500 mt-1">
                 {isForgotPassword
                   ? 'Enter your email to receive recovery instructions.'
                   : isRegistering
-                  ? 'Register your company for self-service subscription portal.'
+                  ? 'Register your company for the self-service portal.'
                   : 'Sign in to your Brightloop account.'}
               </p>
             </div>
 
-            {/* Error Message */}
+            {/* Error Banner */}
             {error && (
-              <div className="mb-5 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2.5">
-                <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
+              <div className="mb-5 p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs flex items-start gap-2.5">
+                <AlertCircle className="w-4 h-4 shrink-0 text-red-500 mt-0.5" />
                 <span>{error}</span>
               </div>
             )}
 
-            {/* Success Message */}
+            {/* Success Banner */}
             {resetSentMessage && (
-              <div className="mb-5 p-3 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs flex items-center gap-2.5">
-                <CheckCircle2 className="w-4 h-4 shrink-0 text-[#14B8A6]" />
+              <div className="mb-5 p-3 rounded-lg bg-teal-50 border border-teal-200 text-teal-700 text-xs flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 shrink-0 text-teal-500 mt-0.5" />
                 <span>{resetSentMessage}</span>
               </div>
             )}
 
-            {/* FORGOT PASSWORD FORM */}
+            {/* ── FORGOT PASSWORD ── */}
             {isForgotPassword ? (
-              <form onSubmit={handleForgotPassword} className="space-y-4 text-xs">
+              <form onSubmit={handleForgotPassword} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1.5">Email address</label>
+                  <label className={labelCls}>Email address</label>
                   <div className="relative">
                     <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
@@ -250,7 +269,7 @@ export const LoginPage: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="admin@brightloop.io"
-                      className="w-full pl-10 pr-3.5 py-2.5 bg-[#0B1120]/60 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:border-[#14B8A6] focus:ring-1 focus:ring-[#14B8A6] transition"
+                      className={iconInputCls}
                     />
                   </div>
                 </div>
@@ -258,83 +277,87 @@ export const LoginPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3 bg-[#14B8A6] hover:bg-[#0D9488] text-slate-950 font-bold rounded-xl transition shadow-lg shadow-teal-500/20 text-xs tracking-wide"
+                  className="w-full py-2.5 bg-[#18243A] hover:bg-slate-700 text-white font-semibold rounded-lg transition text-sm flex items-center justify-center gap-2"
                 >
-                  {loading ? 'Sending Instructions...' : 'Send Reset Instructions'}
+                  {loading ? 'Sending...' : 'Send Reset Instructions'}
+                  {!loading && <ArrowRight className="w-4 h-4" />}
                 </button>
 
-                <div className="text-center pt-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsForgotPassword(false);
-                      setError(null);
-                      setResetSentMessage(null);
-                    }}
-                    className="text-[#14B8A6] hover:underline font-semibold"
-                  >
-                    Back to Sign In
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsForgotPassword(false);
+                    setError(null);
+                    setResetSentMessage(null);
+                  }}
+                  className="w-full text-center text-sm text-teal-600 hover:text-teal-700 font-medium transition"
+                >
+                  ← Back to Sign In
+                </button>
               </form>
+
             ) : isRegistering ? (
-              /* REGISTRATION FORM */
-              <form onSubmit={handleRegisterSubmit} className="space-y-4 text-xs">
+              /* ── REGISTRATION FORM ── */
+              <form onSubmit={handleRegisterSubmit} className="space-y-4">
                 <div>
-                  <label className="block font-medium text-slate-300 mb-1">Full Name *</label>
+                  <label className={labelCls}>Full Name *</label>
                   <input
                     type="text"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Rahul Varma"
-                    className="w-full px-3.5 py-2.5 bg-[#0B1120]/60 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#14B8A6] focus:ring-1 focus:ring-[#14B8A6] transition"
+                    className={inputCls}
                   />
                 </div>
 
                 <div>
-                  <label className="block font-medium text-slate-300 mb-1">Company Name</label>
+                  <label className={labelCls}>Company Name</label>
                   <input
                     type="text"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                     placeholder="Technova Solutions Pvt Ltd"
-                    className="w-full px-3.5 py-2.5 bg-[#0B1120]/60 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#14B8A6] focus:ring-1 focus:ring-[#14B8A6] transition"
+                    className={inputCls}
                   />
                 </div>
 
                 <div>
-                  <label className="block font-medium text-slate-300 mb-1">Business Email *</label>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="rahul@technova.com"
-                    className="w-full px-3.5 py-2.5 bg-[#0B1120]/60 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#14B8A6] focus:ring-1 focus:ring-[#14B8A6] transition"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-medium text-slate-300 mb-1">Password *</label>
+                  <label className={labelCls}>Business Email *</label>
                   <div className="relative">
+                    <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="rahul@technova.com"
+                      className={iconInputCls}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className={labelCls}>Password *</label>
+                  <div className="relative">
+                    <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
                       type={showPassword ? 'text' : 'password'}
                       required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      placeholder="••••••••••••"
-                      className="w-full px-3.5 py-2.5 pr-10 bg-[#0B1120]/60 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#14B8A6] focus:ring-1 focus:ring-[#14B8A6] transition"
+                      placeholder="Min 8 chars, uppercase, special"
+                      className={`${iconInputCls} pr-10`}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                   </div>
-                  <p className="text-[10px] text-slate-400 mt-1">
+                  <p className="text-[11px] text-slate-400 mt-1.5">
                     &gt;8 characters with uppercase, lowercase, and special symbol.
                   </p>
                 </div>
@@ -342,30 +365,31 @@ export const LoginPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3 bg-[#14B8A6] hover:bg-[#0D9488] text-slate-950 font-bold rounded-xl transition shadow-lg shadow-teal-500/20 text-xs tracking-wide"
+                  className="w-full py-2.5 bg-[#18243A] hover:bg-slate-700 text-white font-semibold rounded-lg transition text-sm flex items-center justify-center gap-2"
                 >
-                  {loading ? 'Creating Account...' : 'Register Customer Account'}
+                  {loading ? 'Creating Account...' : 'Create Account'}
+                  {!loading && <ArrowRight className="w-4 h-4" />}
                 </button>
 
-                <div className="text-center pt-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsRegistering(false);
-                      setError(null);
-                    }}
-                    className="text-[#14B8A6] hover:underline font-semibold"
-                  >
-                    Already have an account? Sign In
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsRegistering(false);
+                    setError(null);
+                  }}
+                  className="w-full text-center text-sm text-slate-500 hover:text-slate-700 font-medium transition"
+                >
+                  Already have an account? <span className="text-teal-600">Sign In</span>
+                </button>
               </form>
+
             ) : (
-              /* MAIN LOGIN FORM (Matches Exact Request) */
-              <form onSubmit={handleLoginSubmit} className="space-y-4 text-xs">
-                {/* Email Input */}
+              /* ── MAIN LOGIN FORM ── */
+              <form onSubmit={handleLoginSubmit} className="space-y-5">
+
+                {/* Email */}
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1.5">Email address</label>
+                  <label className={labelCls}>Email address</label>
                   <div className="relative">
                     <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
@@ -374,22 +398,22 @@ export const LoginPage: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="admin@brightloop.io"
-                      className="w-full pl-10 pr-3.5 py-2.5 bg-[#0B1120]/60 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:border-[#14B8A6] focus:ring-1 focus:ring-[#14B8A6] transition"
+                      className={iconInputCls}
                     />
                   </div>
                 </div>
 
-                {/* Password Input with Show/Hide Toggle */}
+                {/* Password */}
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <label className="text-xs font-medium text-slate-300">Password</label>
+                    <label className={labelCls.replace('mb-1.5', '')}>Password</label>
                     <button
                       type="button"
                       onClick={() => {
                         setIsForgotPassword(true);
                         setError(null);
                       }}
-                      className="text-[11px] text-[#14B8A6] hover:underline font-medium"
+                      className="text-xs text-teal-600 hover:text-teal-700 font-medium transition"
                     >
                       Forgot password?
                     </button>
@@ -402,89 +426,95 @@ export const LoginPage: React.FC = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••••••"
-                      className="w-full pl-10 pr-10 py-2.5 bg-[#0B1120]/60 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:border-[#14B8A6] focus:ring-1 focus:ring-[#14B8A6] transition"
+                      className={`${iconInputCls} pr-10`}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition"
+                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                   </div>
                 </div>
 
-                {/* Remember Me Checkbox */}
-                <div className="flex items-center">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={rememberMe}
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                      className="w-4 h-4 rounded bg-[#0B1120] border-slate-700 text-[#14B8A6] focus:ring-[#14B8A6] focus:ring-offset-0"
-                    />
-                    <span className="text-[11px] text-[#A5B4CC]">Remember me for 30 days</span>
+                {/* Remember me */}
+                <div className="flex items-center gap-2.5">
+                  <input
+                    type="checkbox"
+                    id="remember"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="w-4 h-4 rounded border-slate-300 text-teal-500 focus:ring-teal-500 focus:ring-offset-0"
+                  />
+                  <label htmlFor="remember" className="text-xs text-slate-500 cursor-pointer select-none">
+                    Remember me for 30 days
                   </label>
                 </div>
 
-                {/* Main Action Button */}
+                {/* Primary CTA — Sign in as Admin */}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full mt-2 py-3 bg-[#14B8A6] hover:bg-[#0D9488] text-slate-950 font-bold rounded-xl transition shadow-lg shadow-teal-500/20 text-xs tracking-wide flex items-center justify-center gap-2"
+                  className="w-full py-2.5 bg-[#18243A] hover:bg-slate-700 text-white font-semibold rounded-lg transition-all text-sm flex items-center justify-center gap-2 shadow-sm"
                 >
+                  <Shield className="w-4 h-4" />
                   <span>{loading ? 'Authenticating...' : 'Sign in as Admin'}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  {!loading && <ArrowRight className="w-4 h-4 ml-auto" />}
                 </button>
 
                 {/* Divider */}
-                <div className="relative my-5 text-center">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-slate-700/70" />
-                  </div>
-                  <span className="relative px-3 bg-[#172338] text-[10px] uppercase font-semibold tracking-wider text-slate-400">
+                <div className="relative my-1 flex items-center gap-3">
+                  <div className="flex-1 border-t border-slate-200" />
+                  <span className="text-[11px] uppercase font-semibold tracking-wider text-slate-400 whitespace-nowrap">
                     Or preview another role
                   </span>
+                  <div className="flex-1 border-t border-slate-200" />
                 </div>
 
-                {/* Two Secondary Buttons: Staff and Customer */}
+                {/* Quick role buttons — Staff & Customer */}
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     type="button"
                     onClick={() => loginAs('STAFF')}
-                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-[#0B1120]/60 hover:bg-[#0B1120] border border-slate-700/80 text-white text-xs font-semibold hover:border-slate-500 transition shadow-xs"
+                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 hover:border-slate-300 text-slate-700 text-sm font-semibold transition-all"
                   >
-                    <Briefcase className="w-3.5 h-3.5 text-sky-400" />
+                    <Briefcase className="w-4 h-4 text-sky-500" />
                     <span>Staff</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => loginAs('CUSTOMER')}
-                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-[#0B1120]/60 hover:bg-[#0B1120] border border-slate-700/80 text-white text-xs font-semibold hover:border-slate-500 transition shadow-xs"
+                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 hover:border-slate-300 text-slate-700 text-sm font-semibold transition-all"
                   >
-                    <UserIcon className="w-3.5 h-3.5 text-[#14B8A6]" />
+                    <UserIcon className="w-4 h-4 text-teal-500" />
                     <span>Customer</span>
                   </button>
                 </div>
 
-                {/* Registration link */}
-                <div className="text-center pt-3 border-t border-slate-700/50 mt-4">
-                  <span className="text-[11px] text-slate-400">Need a customer account? </span>
+                {/* Register link */}
+                <p className="text-center text-xs text-slate-500 pt-2 border-t border-slate-100">
+                  Need a customer account?{' '}
                   <button
                     type="button"
                     onClick={() => {
                       setIsRegistering(true);
                       setError(null);
                     }}
-                    className="text-[11px] text-[#14B8A6] hover:underline font-semibold"
+                    className="text-teal-600 hover:text-teal-700 font-semibold transition"
                   >
                     Register here
                   </button>
-                </div>
+                </p>
               </form>
             )}
           </div>
+
+          {/* Below-card footer note */}
+          <p className="text-center text-[11px] text-slate-400 mt-5">
+            Secured with JWT · RBAC role isolation · Passwords hashed with bcrypt
+          </p>
         </div>
       </div>
     </div>
